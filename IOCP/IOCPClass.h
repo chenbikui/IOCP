@@ -121,6 +121,7 @@ public:
 
 	int CharToWideChar(char * pchar,WCHAR * pwchar);
 	int WideCharToChar(WCHAR * pwchar, char * pchar);
+	char* GetLocalIPAddress();
 
 
 	BOOL DoAccept(LPCLIENTSOCKETINFO pClientSockInfo,LPSOCKETIODATA pSocketIoData);

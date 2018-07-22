@@ -108,10 +108,8 @@ BOOL CIOCPDlg::OnInitDialog()
 
 //	ShowWindow(SW_MINIMIZE);
 
-	char	szHostName[128] = {0};
-	gethostname(szHostName, 128);
-	hostent* phostent = gethostbyname(szHostName);
-	char* szIP = inet_ntoa(*(in_addr*)&phostent->h_addr_list[2]);
+	
+	char* szIP = m_iocp.GetLocalIPAddress();
 	m_strServerIP= szIP;
 	GetDlgItem(IDC_EDIT_IP)->SetWindowText(m_strServerIP);
 	GetDlgItem(IDC_EDIT_PORT)->SetWindowText(_T("4321"));

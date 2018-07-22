@@ -43,6 +43,27 @@ int IOCPClass::WideCharToChar(WCHAR * pwchar, char * pchar)
 	return dwnum-1;
 }
 
+char* IOCPClass::GetLocalIPAddress()
+{
+	char host_name[225] = {0};
+
+	if(gethostname(host_name,sizeof(host_name))==SOCKET_ERROR)
+	{
+		return NULL; 
+	}
+
+	struct hostent *phe=gethostbyname(host_name);
+	if(phe==0)
+	{
+		return NULL; 
+	}
+
+	struct in_addr addr;
+	memcpy(&addr,phe->h_addr_list[0],sizeof(struct in_addr)); 
+	return inet_ntoa(addr); 
+}
+
+
 
 unsigned int __stdcall CheckClientSocketIsAliveThread(LPVOID lParam)
 {
